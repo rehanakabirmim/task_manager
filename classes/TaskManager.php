@@ -12,7 +12,7 @@ public function store($allData){
 
     $taskDate =$allData['add_date'];
     
- 
+//  kjhh
     
     $sql = "INSERT INTO tasks (task_name, task_img, task_date) VALUES ('$taskName', '$imageName', '$taskDate')";
     
