@@ -1,6 +1,7 @@
 <?PHP
 include("classes/TaskManager.php");
 $t1 = new TaskManager();
+
  if(isset($_POST['save'])){
     $t1->store($_POST);
  }
@@ -58,7 +59,10 @@ $t1 = new TaskManager();
                         <td><?php echo date("d-M-Y",strtotime($row['task_date']));?></td>
                     
                         <td>
-                            <a href=""  class="btn btn-info">Edit</a>
+                            <a href="edit.php?id=<?php echo $row['id']?>"  class="btn btn-info">
+                            <i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href="delete.php?id=<?php echo $row['id']?>"  class="btn btn-danger">
+                            <i class="fa-solid fa-trash"></i></a>
                         </td>
                     </tr>
                     <?php 
@@ -70,6 +74,23 @@ $t1 = new TaskManager();
                 <div class="addTask">
                     <form action="" method="POST" enctype="multipart/form-data">
                         <h2 class="display-3 text-primary">Add Tasks </h2>
+
+                        <!-- Display Message-- -->
+
+                        <?php 
+                        if(isset($_SESSION['message'])){?>
+                    
+                        <div class="alert alert-<?php echo $_SESSION['type']?> alert-dismissible fade show" role="alert">
+                        <?php echo $_SESSION['message'];?>
+  
+                        <button type="button" class="btn-close" data-bs_dismissibl="alert" aria-label="Close"></button>
+                        </div>
+                    
+                        </<?php
+                                unset($_SESSION['message']);
+                                }
+                                
+                                ?>
 
                         <div class="form-group mb-3">
                             <label for="addTask">Add Task</label>
@@ -93,7 +114,7 @@ $t1 = new TaskManager();
                 </div>
             </div>
            </div>
-        <!-- hi -->
+       
 <!--JS LINK-->
     <script src="js/jqury.3.6.4.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
@@ -104,3 +125,4 @@ $t1 = new TaskManager();
    
 </body>
 </html>
+

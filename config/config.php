@@ -5,7 +5,7 @@ class Connection{
         $this->con = new mysqli("localhost","root","","task_manager");
         
     }
-    //hello
+    
         
     }
 ?>
