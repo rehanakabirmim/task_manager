@@ -62,36 +62,49 @@ public function edit($tid){
 
 }
 
-////Edit Task
+//Update Task
 public function update($allData,$tid){
     $taskName = $allData['add_task'];
    
-    $imageName = $_FILES['task_image']['name'];
-    $temImageName = $_FILES['task_image']['tmp_name'];
+    $newName = $allData['new_task'];
+    $newDate = $allData['new_date'];
 
-    $taskDate =$allData['add_date'];
-    
-    
-    $sql = "UPDATE `tasks`  SET `task_name`='$taskName',`task_img`= '$imageName',`task_date`='$taskDate' WHERE id='$tid'";
-    
+    $old__imageName = $allData['old__image'];
+    $new__imageName = $_FILES['task_image']['name'];
+    $tmp__imageName = $_FILES['task_image']['tmp_name'];
 
-    $result = $this->con->query($sql);
-    if($result){
-        $_SESSION['message']= "Data Updated Successfully!";
-        $_SESSION['type']="success";
-        if(isset($imageName)){
-        move_uploaded_file( $temImageName,"upload/". $imageName);
-        }
+    if($new__imageName != ''){
+        $update_imageName = $new__imageName;
+    }
+    else{
+        $update_imageName = $old__imageName;
+    }
+    if(file_exists("upload/".$_FILES['task_image']['name'])){
+        $sql = "UPDATE `tasks`  SET `task_name`='$newName',`task_img`= '$update_imageName',`task_date`='$newDate' WHERE id='$tid'";
+        $fire = $this->con->query($sql);
         header("location: index.php");
     }
-    
+    else{
+        $sql = "UPDATE `tasks`  SET `task_name`='$newName',`task_img`= '$update_imageName',`task_date`='$newDate' WHERE id='$tid'";
+        $fire = $this->con->query($sql);
+        // header("location: index.php");
+        if($fire){
+            if($_FILES['task_image']['name'] != ""){
+                move_uploaded_file($tmp__imageName, "upload/".$new__imageName);
+                unlink("upload/".$old__imageName);
+            }
+            $_SESSION['message']= "Data Updated Successfully!";
+            $_SESSION['type']="success";
+            header("location: index.php"); 
+        }
+        else{
+            $_SESSION['message']= "Data Not Updated!";
+            $_SESSION['type']="danger";
+            header("location: index.php"); 
+        }
+    }
 
 }
-
-
-
-
-
 
 }
 

@@ -21,7 +21,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--CSS LINK-->
     <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
    <link rel="stylesheet" href="css/fontawesome.min.css">
    <link rel="stylesheet" href="css/style.css">
     <title>Task Manager</title>
@@ -45,7 +46,7 @@
                         <div class="alert alert-<?php echo $_SESSION['type']?> alert-dismissible fade show" role="alert">
                         <?php echo $_SESSION['message'];?>
   
-                        <button type="button" class="btn-close" data-bs_dismissibl="alert" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     
                         </<?php
@@ -56,7 +57,7 @@
 
                         <div class="form-group mb-3">
                             <label for="addTask">Add Task</label>
-                            <input type="text" name="add_task" id="addTask" placeholder="Enter task details"
+                            <input type="text" name="new_task" id="addTask" placeholder="Enter task details"
                              class="form-control" value="<?php echo $row['task_name'];?>">
                         </div>
 
@@ -64,11 +65,12 @@
                             <label for="taskImage">Task Image</label>
                             <img src="upload/<?php echo $row['task_img']?>" alt="" width="60px" height="60px">
                             <input type="file" name="task_image" id="taskImage"  class="form-control mt-3">
+                            <input type="hidden" name="old__image" id="taskImage"  class="form-control mt-3" value="<?php echo $row['task_img'];?>">
                         </div>
 
                         <div class="form-group mb-3">
                             <label for="addDate">Add Date</label>
-                            <input type="date" name="add_date" id="addDate" class="form-control" value="<?php echo $row['task_name'];?>">
+                            <input type="date" name="new_date" id="addDate" class="form-control" value="<?php echo $row['task_name'];?>">
                           </div>
                           <div class="form-group mb-3">
                             <input type="submit" name="upd_task" class="btn btn-info" value="Update Task"></div>

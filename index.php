@@ -3,11 +3,10 @@ include("classes/TaskManager.php");
 $t1 = new TaskManager();
 
  if(isset($_POST['save'])){
-    $t1->store($_POST);
+    // print_r($_POST['save']);
+       $t1->store($_POST);
  }
 ?>
-
-
 
 
 
@@ -18,7 +17,8 @@ $t1 = new TaskManager();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!--CSS LINK-->
     <link rel="stylesheet" href="css/all.min.css">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css"> -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
    <link rel="stylesheet" href="css/fontawesome.min.css">
    <link rel="stylesheet" href="css/style.css">
     <title>Task Manager</title>
@@ -29,7 +29,7 @@ $t1 = new TaskManager();
         <div class="row py-3">
            <div class="col-lg-8 offset-lg-2 shadow p-4">
             <div class="title">
-                <h2 class="display-2 text-primary">Task Manager</h2>
+                <h2 class="display-3 text-primary">Task Manager</h2>
                 <p class="lead">This is is a simple project.We are going to use HTML,Bootstrap,PHP and MYSQL.</p>
             </div>
             <div class="alltask py-4">
@@ -69,7 +69,7 @@ $t1 = new TaskManager();
                         }
                     ?>
                 </table>
-                <hr>
+             
                 </div>
                 <div class="addTask">
                     <form action="" method="POST" enctype="multipart/form-data">
@@ -83,7 +83,7 @@ $t1 = new TaskManager();
                         <div class="alert alert-<?php echo $_SESSION['type']?> alert-dismissible fade show" role="alert">
                         <?php echo $_SESSION['message'];?>
   
-                        <button type="button" class="btn-close" data-bs_dismissibl="alert" aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     
                         </<?php
@@ -99,7 +99,7 @@ $t1 = new TaskManager();
 
                         <div class="form-group mb-3">
                             <label for="taskImage">Task Image</label>
-                            <input type="file" name="task_image" id="taskImage"  class="form-control">
+                            <input type="file" name="task_image" id="taskImage"  class="form-control mb-3">
                         </div>
 
                         <div class="form-group mb-3">
@@ -107,10 +107,12 @@ $t1 = new TaskManager();
                             <input type="date" name="add_date" id="addDate" class="form-control">
                           </div>
                           <div class="form-group mb-3">
-                            <input type="submit" name="save" class="btn btn-dark" value="Add Task"></div>
+                            <!-- <input type="submit" name="save" class="btn btn-dark" value="Add Task"> -->
+                            <button type="submit" name="save" value="submit">Add Task</button>
                           </div>
                     </form>
                 </div>
+                
                 </div>
             </div>
            </div>
